@@ -45,15 +45,19 @@ function getEvolution(years) {
   let count = 0;
   getDecade(urlArray[count], years);
 
-  if (count < urlArray.length) {
-    intervalID = setInterval(() => {
-      count++;
-      decadeContainer.innerHTML = "";
-      getDecade(urlArray[count], years);
-    }, 5000);
-  }
-  clearInterval(intervalID);
+  intervalID = setInterval(() => {
+    count++;
+    if (count < urlArray.length) {
+    decadeContainer.innerHTML = "";
+    getDecade(urlArray[count], years);
+    } else {
+      clearInterval(intervalID);
+      selectDecade.disabled = false;
+    }
+  }, 2000);
 }
+
+
 
 /****PRINCIPAL FUNCTION******
  ****************************/
@@ -111,5 +115,6 @@ selectDecade.addEventListener("change", () => {
 
 buttonEvolution.addEventListener("click", () => {
   decadeContainer.innerHTML = "";
+  selectDecade.disabled = true;
   getEvolution();
 });
