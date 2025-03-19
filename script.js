@@ -1,6 +1,8 @@
 const decadeContainer = document.querySelector("#decadeContainer");
 const selectDecade = document.querySelector("#selectDecade");
 const buttonEvolution = document.querySelector("#buttonEvolution");
+const buttonStopEvolution = document.querySelector("#buttonStopEvolution");
+
 let intervalID;
 
 // const dateStart = [1970, 1980, 1990, 2000, 2010, 2020];
@@ -58,7 +60,6 @@ function getEvolution(years) {
 }
 
 
-
 /****PRINCIPAL FUNCTION******
  ****************************/
 async function getDecade(url, years) {
@@ -76,14 +77,21 @@ async function getDecade(url, years) {
       let movie = document.createElement("li");
       movie.innerText = element.original_title;
       movieList.appendChild(movie);
+
+      let poster = document.createElement("img");
+      poster.src = `https://image.tmdb.org/t/p/w500${element.poster_path}`; //correspond à un setAttribute
+      movie.appendChild(poster);
+
     });
   } catch (error) {
     console.error("Failed to catch data :", error);
   }
 }
 
-/*******USER CHOICE*******
+/*******START*******
  **************************/
+
+buttonStopEvolution.disabled = true;
 
 selectDecade.addEventListener("change", () => {
   decadeContainer.innerHTML = "";
@@ -111,10 +119,20 @@ selectDecade.addEventListener("change", () => {
     default:
       break;
   }
+  selectDecade.value = "";
 });
 
 buttonEvolution.addEventListener("click", () => {
   decadeContainer.innerHTML = "";
   selectDecade.disabled = true;
+  buttonEvolution.disabled = true;
+  buttonStopEvolution.disabled = false;
   getEvolution();
 });
+
+buttonStopEvolution.addEventListener("click", () => {
+  selectDecade.disabled = false;
+  buttonEvolution.disabled = false;
+  buttonStopEvolution.disabled = true;
+  clearInterval(intervalID);
+})
