@@ -1,33 +1,23 @@
-// 70's
 const decadeContainer = document.querySelector("#decadeContainer");
 const selectDecade = document.querySelector("#selectDecade");
 
-const urlSeventies =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1970-01-01&primary_release_date.lte=1979-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+const dateStart = [1970, 1980, 1990, 2000, 2010, 2020];
+const dateEnd = [1979, 1989, 1999, 2009, 2019, 2029];
 
-const urlEighties =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1980-01-01&primary_release_date.lte=1989-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+function getUrl (dateStart, dateEnd){
+ let urlDecade =
+  `https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=${dateStart}-01-01&primary_release_date.lte=${dateEnd}-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a`;
+  return urlDecade;
+}
 
-const urlNineties =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
-
-const urlTwenies =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2000-01-01&primary_release_date.lte=2009-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
-
-const urlTwentyTenies =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2010-01-01&primary_release_date.lte=2019-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
-
-const urlTwentyTwenties =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2020-01-01&primary_release_date.lte=2029-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
-
-async function getDecade(url) {
+async function getDecade(url, years) {
   try {
     const response = await fetch(url);
     const dataDecade = await response.json();
     console.log(dataDecade);
 
     let movieList = document.createElement("ol");
-    movieList.innerText = "Top 10 in this decade";
+    movieList.innerText = `Top 10 in the ${years}'s`;
     decadeContainer.appendChild(movieList);
 
     let resultDecade = dataDecade.results;
@@ -38,34 +28,41 @@ async function getDecade(url) {
       movieList.appendChild(movie);
     });
   } catch (error) {
-    console.error("failed to catch data :", error);
+    console.error("Failed to catch data :", error);
   }
+}
+
+function getEvolution(url, years) {
+  setInterval
 }
 
 selectDecade.addEventListener("change", () => {
   //stocker la "" en focnton de sa valeur
+  decadeContainer.innerHTML = "";
   const decade = selectDecade.value;
 
   switch (decade) {
     case "70's":
-      getDecade(urlSeventies);
+      getDecade(getUrl(dateStart[0], dateEnd[0]), decade);
       break;
     case "80's":
-      getDecade(urlEighties);
+      getDecade(getUrl(dateStart[1], dateEnd[1]), decade);
       break;
     case "90's":
-      getDecade(urlNineties);
+      getDecade(getUrl(dateStart[2], dateEnd[2]), decade);
       break;
     case "00's":
-      getDecade(urlTwenies);
+      getDecade(urlTwenies, decade);
       break;
     case "10's":
-      getDecade(urlTwentyTenies);
+      getDecade(urlTwentyTenies, decade);
       break;
     case "20's":
-      getDecade(urlTwentyTwenties);
+      getDecade(urlTwentyTwenties, decade);
       break;
-      
+    case "evolution":
+      getEvolution()
+      break;
     default:
       break;
   }
