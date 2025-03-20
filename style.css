@@ -108,13 +108,21 @@ datalist {
     justify-content: space-between;
     writing-mode:vertical-lr;
     width: 200px;
-  }
+}
   
-  option {
+option {
     padding: 0;
-  }
+}
   
-  input[type="range"] {
+input[type="range"] {
     width: 200px;
     margin: 0;
-  }
+}
+
+.titleThrough {
+    margin-left: 30%;
+}
+
+.titleTime {
+    margin-left: 10%;
+}
