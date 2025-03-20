@@ -25,10 +25,20 @@ body {
     color: white;
 }
 
-#buttonEvolution, #buttonStopEvolution {
+#buttonEvolution {
     border-radius: 25%;
-    height: 2em;
-    margin-top: 10%;
+    height: 3em;
+    width: 3em;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 2%;
+}
+#buttonStopEvolution{
+    border-radius: 25%;
+    height: 3em;
+    margin-top: 5%;
+    margin-right: 15%;
+    width: 3em;
 }
 
 .play-button-img, .stop-button-img {
@@ -42,6 +52,8 @@ header {
 
 .title {
     margin-right: 10%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
 }
 
 .description {
@@ -55,10 +67,13 @@ header {
 .titlePoster {
     display: flex;
     flex-direction: column;
+    text-overflow: ellipsis;
 }
 
 .topThree {
     display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
     justify-content: space-evenly;
 }
 
