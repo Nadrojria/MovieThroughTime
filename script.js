@@ -72,8 +72,23 @@ async function getDecade(url, years) {
     decadeContainer.appendChild(movieList);
 
     let resultDecade = dataDecade.results;
+    let topThree = resultDecade.slice(0, 3);
+    console.log(topThree)
+    let topFourToTen = resultDecade.slice(3, 10);
+    console.log(topFourToTen)
 
-    resultDecade.slice(0, 10).forEach((element) => {
+    topThree.forEach((element) => {
+      let movie = document.createElement("li");
+      movie.innerText = element.original_title;
+      movieList.appendChild(movie);
+
+      let poster = document.createElement("img");
+      poster.src = `https://image.tmdb.org/t/p/w500${element.poster_path}`; //correspond à un setAttribute
+      movie.appendChild(poster);
+
+    });
+
+    topFourToTen.forEach((element) => {
       let movie = document.createElement("li");
       movie.innerText = element.original_title;
       movieList.appendChild(movie);
