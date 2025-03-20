@@ -74,28 +74,48 @@ async function getDecade(url, years) {
     let resultDecade = dataDecade.results;
     let topThree = resultDecade.slice(0, 3);
     console.log(topThree)
-    let topFourToTen = resultDecade.slice(3, 10);
-    console.log(topFourToTen)
+    let topLastSeven = resultDecade.slice(3, 10);
+    console.log(topLastSeven)
+
+    let divTopThree = document.createElement("div");
+    divTopThree.classList.add("topThree")
+    movieList.appendChild(divTopThree);
+
+    let divLastSeven = document.createElement("div");
+    divLastSeven.classList.add("topLastSeven")
+    movieList.appendChild(divLastSeven);
 
     topThree.forEach((element) => {
-      let movie = document.createElement("li");
-      movie.innerText = element.original_title;
-      movieList.appendChild(movie);
+      let titlePoster = document.createElement("div");
+      titlePoster.classList.add("titlePoster");
+      divTopThree.appendChild(titlePoster);
 
       let poster = document.createElement("img");
+      poster.classList.add("moviePosterThree");
       poster.src = `https://image.tmdb.org/t/p/w500${element.poster_path}`; //correspond à un setAttribute
-      movie.appendChild(poster);
+      titlePoster.appendChild(poster);
+      
+      let movie = document.createElement("li");
+      movie.classList.add("title");
+      movie.innerText = element.original_title;
+      titlePoster.appendChild(movie);
 
     });
 
-    topFourToTen.forEach((element) => {
-      let movie = document.createElement("li");
-      movie.innerText = element.original_title;
-      movieList.appendChild(movie);
+    topLastSeven.forEach((element) => {
+      let titlePoster = document.createElement("div");
+      titlePoster.classList.add("titlePosterLastSeven");
+      divLastSeven.appendChild(titlePoster);
 
       let poster = document.createElement("img");
+      poster.classList.add("moviePosterSeven");
       poster.src = `https://image.tmdb.org/t/p/w500${element.poster_path}`; //correspond à un setAttribute
-      movie.appendChild(poster);
+      titlePoster.appendChild(poster);
+      
+      let movie = document.createElement("li");
+      movie.classList.add("title");
+      movie.innerText = element.original_title;
+      titlePoster.appendChild(movie);
 
     });
   } catch (error) {

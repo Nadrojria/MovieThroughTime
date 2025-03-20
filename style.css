@@ -47,3 +47,45 @@ header {
 .description {
     margin-left: 10%;
 }
+
+.decadeContainer {
+    display: flex;
+}
+
+.titlePoster {
+    display: flex;
+    flex-direction: column;
+}
+
+.topThree {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.movie {
+    display: flex;
+    flex-direction: column;
+}
+
+.topLastSeven {
+    margin-top: 5%;
+    display: flex;
+    max-width: 100%;
+}
+
+.titlePosterLastSeven{
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    text-overflow: ellipsis;
+}
+
+.moviePosterThree {
+    max-width: 30%;
+}
+
+.moviePosterSeven {
+    max-width: 40%;
+}
