@@ -1,0 +1,49 @@
+.rowdies-light {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+    
+.rowdies-regular {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+    
+.rowdies-bold {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+body {
+    font-family: "Rowdies", sans-serif;
+    background-image: url("felix-mooneeram-evlkOfkQ5rE-unsplash.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: white;
+}
+
+#buttonEvolution, #buttonStopEvolution {
+    border-radius: 25%;
+    height: 2em;
+    margin-top: 10%;
+}
+
+.play-button-img, .stop-button-img {
+    height: 1em;
+    border-radius: 50%;
+}
+
+header {
+    display: flex;
+}
+
+.title {
+    margin-right: 10%;
+}
+
+.description {
+    margin-left: 10%;
+}
