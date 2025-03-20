@@ -9,22 +9,22 @@ let intervalID;
 // const dateEnd = [1979, 1989, 1999, 2009, 2019, 2029];
 
 const urlSeventies =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1970-01-01&primary_release_date.lte=1979-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1970-01-01&primary_release_date.lte=1979-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
 
 const urlEighties =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1980-01-01&primary_release_date.lte=1989-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1980-01-01&primary_release_date.lte=1989-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
 
 const urlNineties =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
 
 const urlTwenies =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2000-01-01&primary_release_date.lte=2009-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2000-01-01&primary_release_date.lte=2009-12-31&sort_by=vote_average.desc&vote_count.gte=10000&api_key=07d42f5abde4196c2595e75f9ee0975a";
 
 const urlTwentyTenies =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2010-01-01&primary_release_date.lte=2019-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2010-01-01&primary_release_date.lte=2019-12-31&sort_by=vote_average.desc&vote_count.gte=20000&api_key=07d42f5abde4196c2595e75f9ee0975a";
 
 const urlTwentyTwenties =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2020-01-01&primary_release_date.lte=2029-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2020-01-01&primary_release_date.lte=2029-12-31&sort_by=vote_average.desc&vote_count.gte=10000&api_key=07d42f5abde4196c2595e75f9ee0975a";
 
 const urlArray = [
   urlSeventies,
@@ -97,7 +97,7 @@ async function getDecade(url, years) {
       
       let movie = document.createElement("li");
       movie.classList.add("title");
-      movie.innerText = element.original_title;
+      movie.innerText = element.title;
       titlePoster.appendChild(movie);
 
     });
@@ -114,7 +114,7 @@ async function getDecade(url, years) {
       
       let movie = document.createElement("li");
       movie.classList.add("title");
-      movie.innerText = element.original_title;
+      movie.innerText = element.title;
       titlePoster.appendChild(movie);
 
     });
