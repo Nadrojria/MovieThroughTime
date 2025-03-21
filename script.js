@@ -1,30 +1,25 @@
 const decadeContainer = document.querySelector("#decadeContainer");
+const detailsContainer = document.querySelector("#detailsContainer");
 const selectDecade = document.querySelector("#selectDecade");
 const buttonEvolution = document.querySelector("#buttonEvolution");
 const buttonStopEvolution = document.querySelector("#buttonStopEvolution");
 
-let intervalID;
 
-// const dateStart = [1970, 1980, 1990, 2000, 2010, 2020];
-// const dateEnd = [1979, 1989, 1999, 2009, 2019, 2029];
+let intervalID;
 
 const urlSeventies =
   "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1970-01-01&primary_release_date.lte=1979-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
-
 const urlEighties =
   "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1980-01-01&primary_release_date.lte=1989-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
-
 const urlNineties =
   "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
-
 const urlTwenies =
   "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2000-01-01&primary_release_date.lte=2009-12-31&sort_by=vote_average.desc&vote_count.gte=10000&api_key=07d42f5abde4196c2595e75f9ee0975a";
-
 const urlTwentyTenies =
   "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2010-01-01&primary_release_date.lte=2019-12-31&sort_by=vote_average.desc&vote_count.gte=20000&api_key=07d42f5abde4196c2595e75f9ee0975a";
-
 const urlTwentyTwenties =
   "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2020-01-01&primary_release_date.lte=2029-12-31&sort_by=vote_average.desc&vote_count.gte=10000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+
 
 const urlArray = [
   urlSeventies,
@@ -39,11 +34,7 @@ let listId = [];
 
 /****SECONDARY FUNCTION******
  ***************************/
-// function getUrl (dateStart, dateEnd){
-//  let urlDecade =
-//   `https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=${dateStart}-01-01&primary_release_date.lte=${dateEnd}-12-31&sort_by=popularity.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a`;
-//   return urlDecade;
-// }
+
 
 function getEvolution() {
   let count = 0;
@@ -81,6 +72,38 @@ function TheLastSeven(list) {
   return divLastSeven;
 }
 
+function displayDetails(elem){
+  let title = document.createElement("div");
+  title.innerText = elem.title;
+  detailsContainer.appendChild(title);
+
+  let runtime = document.createElement("div");
+  runtime.innerText = elem.runtime;
+  detailsContainer.appendChild(runtime);
+
+  let overview = document.createElement("div");
+  overview.innerText = elem.overview;
+  detailsContainer.appendChild(overview);
+
+  let releaseDate = document.createElement("div");
+  releaseDate.innerText = elem.release_date;
+  detailsContainer.appendChild(releaseDate);
+
+  let voteAverage = document.createElement("div");
+  voteAverage.innerText = elem.vote_average;
+  detailsContainer.appendChild(voteAverage);
+  
+  let poster = document.createElement("img");
+  poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`; 
+  detailsContainer.appendChild(poster);
+
+  let genre = elem.genres;
+  let genresName = document.createElement("div");
+  genresName.innerText = genre.name;
+  detailsContainer.appendChild(genresName);
+
+}
+
 function createDivTopThree(list, elem) {
   let titlePoster = document.createElement("div");
   titlePoster.classList.add("titlePoster");
@@ -95,6 +118,10 @@ function createDivTopThree(list, elem) {
   movie.classList.add("title");
   movie.innerText = elem.title;
   titlePoster.appendChild(movie);
+
+  poster.addEventListener("click", () => {
+    moviesDetails(elem.id);
+  })
 
 }
 
@@ -120,8 +147,25 @@ function fetchID(elem) {
 }
 
 
-/****PRINCIPAL FUNCTION******
+/****PRINCIPAL FUNCTIONS******
  ****************************/
+
+async function moviesDetails(id_movie) {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id_movie}&api_key=07d42f5abde4196c2595e75f9ee0975a`);
+    const dataDetails = await response.json();
+    
+    dataDetails.forEach((element) => {
+      displayDetails(element);
+      
+    })
+
+  } catch (error) {
+  console.error("Failed to catch data details:", error);
+  }
+}
+
+
 async function getDecade(url) {
   try {
     const response = await fetch(url);
@@ -150,6 +194,8 @@ async function getDecade(url) {
     console.error("Failed to catch data :", error);
   }
 }
+
+
 
 /*******START*******
  **************************/
