@@ -4,6 +4,13 @@ const selectDecade = document.querySelector("#selectDecade");
 const buttonEvolution = document.querySelector("#buttonEvolution");
 const buttonStopEvolution = document.querySelector("#buttonStopEvolution");
 
+const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwN2Q0MmY1YWJkZTQxOTZjMjU5NWU3NWY5ZWUwOTc1YSIsIm5iZiI6MTc0MjIwODExMi45NDgsInN1YiI6IjY3ZDdmYzcwMzE2NzhjYzNmODAxYTdkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3IbqW6n5lro3z8X40WTDt5fpLO4niF6uWAt3EaEiEAo'
+  }
+}
 
 let intervalID;
 
@@ -152,12 +159,11 @@ function fetchID(elem) {
 
 async function moviesDetails(id_movie) {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id_movie}&api_key=07d42f5abde4196c2595e75f9ee0975a`);
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id_movie}`, options);
     const dataDetails = await response.json();
     
     dataDetails.forEach((element) => {
       displayDetails(element);
-      
     })
 
   } catch (error) {
