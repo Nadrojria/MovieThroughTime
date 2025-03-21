@@ -43,15 +43,15 @@ const urlArray = [
 //   return urlDecade;
 // }
 
-function getEvolution(years) {
+function getEvolution() {
   let count = 0;
-  getDecade(urlArray[count], years);
+  getDecade(urlArray[count]);
 
   intervalID = setInterval(() => {
     count++;
     if (count < urlArray.length) {
     decadeContainer.innerHTML = "";
-    getDecade(urlArray[count], years);
+    getDecade(urlArray[count]);
     } else {
       clearInterval(intervalID);
       selectDecade.disabled = false;
@@ -59,65 +59,82 @@ function getEvolution(years) {
   }, 2000);
 }
 
+function movieList () {
+  let moviesList = document.createElement("ol");
+  decadeContainer.appendChild(moviesList);
+  return moviesList;
+}
+
+function TheTopThree(list) {
+  let divTopThree = document.createElement("div");
+  divTopThree.classList.add("topThree");
+  list.appendChild(divTopThree);
+  return divTopThree;
+}
+
+function TheLastSeven(list) {
+  let divLastSeven = document.createElement("div");
+  divLastSeven.classList.add("topLastSeven");
+  list.appendChild(divLastSeven);
+  return divLastSeven;
+}
+
+function createDivTopThree(list, elem) {
+  let titlePoster = document.createElement("div");
+  titlePoster.classList.add("titlePoster");
+  list.appendChild(titlePoster);
+
+  let poster = document.createElement("img");
+  poster.classList.add("moviePosterThree");
+  poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`; //correspond à un setAttribute
+  titlePoster.appendChild(poster);
+  
+  let movie = document.createElement("li");
+  movie.classList.add("title");
+  movie.innerText = elem.title;
+  titlePoster.appendChild(movie);
+}
+
+function createDivLastSeven(list, elem) {
+  let titlePoster = document.createElement("div");
+  titlePoster.classList.add("titlePosterLastSeven");
+  list.appendChild(titlePoster);
+
+  let poster = document.createElement("img");
+  poster.classList.add("moviePosterSeven");
+  poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`; //correspond à un setAttribute
+  titlePoster.appendChild(poster);
+  
+  let movie = document.createElement("li");
+  movie.classList.add("title");
+  movie.innerText = elem.title;
+  titlePoster.appendChild(movie);
+}
+
 
 /****PRINCIPAL FUNCTION******
  ****************************/
-async function getDecade(url, years) {
+async function getDecade(url) {
   try {
     const response = await fetch(url);
     const dataDecade = await response.json();
 
-    let movieList = document.createElement("ol");
-    movieList.innerText = `Top 10 in the ${years}'s`;
-    decadeContainer.appendChild(movieList);
-
     let resultDecade = dataDecade.results;
     let topThree = resultDecade.slice(0, 3);
-    console.log(topThree)
     let topLastSeven = resultDecade.slice(3, 10);
-    console.log(topLastSeven)
 
-    let divTopThree = document.createElement("div");
-    divTopThree.classList.add("topThree")
-    movieList.appendChild(divTopThree);
-
-    let divLastSeven = document.createElement("div");
-    divLastSeven.classList.add("topLastSeven")
-    movieList.appendChild(divLastSeven);
+    let listOfMovies = movieList();
+    let listTopThree = TheTopThree(listOfMovies);
+    let listLastSeven = TheLastSeven(listOfMovies);
 
     topThree.forEach((element) => {
-      let titlePoster = document.createElement("div");
-      titlePoster.classList.add("titlePoster");
-      divTopThree.appendChild(titlePoster);
-
-      let poster = document.createElement("img");
-      poster.classList.add("moviePosterThree");
-      poster.src = `https://image.tmdb.org/t/p/w500${element.poster_path}`; //correspond à un setAttribute
-      titlePoster.appendChild(poster);
-      
-      let movie = document.createElement("li");
-      movie.classList.add("title");
-      movie.innerText = element.title;
-      titlePoster.appendChild(movie);
-
+      createDivTopThree(listTopThree, element);
     });
 
     topLastSeven.forEach((element) => {
-      let titlePoster = document.createElement("div");
-      titlePoster.classList.add("titlePosterLastSeven");
-      divLastSeven.appendChild(titlePoster);
-
-      let poster = document.createElement("img");
-      poster.classList.add("moviePosterSeven");
-      poster.src = `https://image.tmdb.org/t/p/w500${element.poster_path}`; //correspond à un setAttribute
-      titlePoster.appendChild(poster);
-      
-      let movie = document.createElement("li");
-      movie.classList.add("title");
-      movie.innerText = element.title;
-      titlePoster.appendChild(movie);
-
+      createDivLastSeven(listLastSeven, element);
     });
+
   } catch (error) {
     console.error("Failed to catch data :", error);
   }
