@@ -35,6 +35,8 @@ const urlArray = [
   urlTwentyTwenties,
 ];
 
+let listId = [];
+
 /****SECONDARY FUNCTION******
  ***************************/
 // function getUrl (dateStart, dateEnd){
@@ -93,6 +95,7 @@ function createDivTopThree(list, elem) {
   movie.classList.add("title");
   movie.innerText = elem.title;
   titlePoster.appendChild(movie);
+
 }
 
 function createDivLastSeven(list, elem) {
@@ -109,6 +112,11 @@ function createDivLastSeven(list, elem) {
   movie.classList.add("title");
   movie.innerText = elem.title;
   titlePoster.appendChild(movie);
+}
+
+function fetchID(elem) {
+  let fetchId = elem.id;
+  listId.push(fetchId);
 }
 
 
@@ -129,11 +137,14 @@ async function getDecade(url) {
 
     topThree.forEach((element) => {
       createDivTopThree(listTopThree, element);
+      fetchID(element);
     });
-
+    
     topLastSeven.forEach((element) => {
       createDivLastSeven(listLastSeven, element);
+      fetchID(element);
     });
+    console.log(listId);
 
   } catch (error) {
     console.error("Failed to catch data :", error);
@@ -148,6 +159,7 @@ buttonStopEvolution.disabled = true;
 selectDecade.addEventListener("change", () => {
   decadeContainer.innerHTML = "";
   const decade = selectDecade.value;
+  listId = [];
 
   switch (decade) {
     case "70":
