@@ -3,6 +3,7 @@ const detailsContainer = document.querySelector("#detailsContainer");
 const selectDecade = document.querySelector("#selectDecade");
 const buttonEvolution = document.querySelector("#buttonEvolution");
 const buttonStopEvolution = document.querySelector("#buttonStopEvolution");
+let buttonCloseModal = document.createElement("button"); // déclaration bouton fermeture modal
 
 const options = {
   method: 'GET',
@@ -129,9 +130,15 @@ function createDiv(list, elem, number) {
   movie.innerText = elem.title;
   titlePoster.appendChild(movie);
 
-  poster.addEventListener("click", () => {
+  
+  poster.addEventListener("click", () => { /* quand on clique sur le poster, ça affiche le modal avec le bouton close*/
     detailsContainer.innerHTML = "";
+    // let buttonCloseModal = document.createElement("button");
+    buttonCloseModal.setAttribute("id", "closeButton"); //ajout d'un bouton pour fermer le modal
+    buttonCloseModal.innerText = "Close"; // ajout du texte sur le bouton
+    detailsContainer.appendChild(buttonCloseModal); // ajout du bouton dans le detailsContainer
     moviesDetails(elem.id);
+    detailsContainer.showModal(); // appel de la fonction modal
   })
 
 }
@@ -255,4 +262,9 @@ buttonStopEvolution.addEventListener("click", () => {
   buttonEvolution.disabled = false;
   buttonStopEvolution.disabled = true;
   clearInterval(intervalID);
+})
+
+
+buttonCloseModal.addEventListener("click", () => { /* fermer la page de détails*/
+  detailsContainer.close();
 })
