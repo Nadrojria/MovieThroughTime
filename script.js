@@ -3,7 +3,8 @@ const detailsContainer = document.querySelector("#detailsContainer");
 const selectDecade = document.querySelector("#selectDecade");
 const buttonEvolution = document.querySelector("#buttonEvolution");
 const buttonStopEvolution = document.querySelector("#buttonStopEvolution");
-let buttonCloseModal = document.createElement("button"); // déclaration bouton fermeture modal
+let buttonCloseModal = document.createElement("button");
+
 
 const options = {
   method: 'GET',
@@ -131,14 +132,14 @@ function createDiv(list, elem, number) {
   titlePoster.appendChild(movie);
 
   
-  poster.addEventListener("click", () => { /* quand on clique sur le poster, ça affiche le modal avec le bouton close*/
+  poster.addEventListener("click", () => {
     detailsContainer.innerHTML = "";
     // let buttonCloseModal = document.createElement("button");
-    buttonCloseModal.setAttribute("id", "closeButton"); //ajout d'un bouton pour fermer le modal
-    buttonCloseModal.innerText = "Close"; // ajout du texte sur le bouton
-    detailsContainer.appendChild(buttonCloseModal); // ajout du bouton dans le detailsContainer
+    buttonCloseModal.setAttribute("id", "closeButton");
+    buttonCloseModal.innerText = "Close";
+    detailsContainer.appendChild(buttonCloseModal);
     moviesDetails(elem.id);
-    detailsContainer.showModal(); // appel de la fonction modal
+    detailsContainer.showModal();
   })
 
 }
@@ -264,7 +265,6 @@ buttonStopEvolution.addEventListener("click", () => {
   clearInterval(intervalID);
 })
 
-
-buttonCloseModal.addEventListener("click", () => { /* fermer la page de détails*/
+buttonCloseModal.addEventListener("click", () => {
   detailsContainer.close();
 })

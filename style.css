@@ -64,6 +64,11 @@ header {
     display: flex;
 }
 
+.modalDetails {
+    display: flex;
+    justify-content: space-evenly;
+};
+
 .titlePosterThree {
     display: flex;
     flex-direction: column;
