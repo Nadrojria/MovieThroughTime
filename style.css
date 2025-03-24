@@ -64,9 +64,12 @@ header {
     display: flex;
 }
 
-.modalDetails {
+.detailsContainer{
     display: flex;
-    justify-content: space-evenly;
+}
+
+.posterDiv img {
+    width: 50px;
 };
 
 .titlePosterThree {

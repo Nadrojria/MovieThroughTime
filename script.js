@@ -81,22 +81,70 @@ function TheLastSeven(list) {
   return divLastSeven;
 }
 
-function displayDetails(elem) {
+// function displayDetails(elem) {
+//   let poster = document.createElement("img");
+//   poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`;
+//   detailsContainer.appendChild(poster);
+
+//   let title = document.createElement("div");
+//   title.innerText = `Title: ${elem.title}`;
+//   detailsContainer.appendChild(title);
+
+//   let releaseDate = document.createElement("div");
+//   releaseDate.innerText = `Release date: ${elem.release_date}`;
+//   detailsContainer.appendChild(releaseDate);
+
+//   let runtime = document.createElement("div");
+//   runtime.innerText = `Runtime: ${elem.runtime} minutes`;
+//   detailsContainer.appendChild(runtime);
+
+//   let genre = elem.genres;
+//   let genresName = document.createElement("div");
+//   let result = "";
+//   for (let value of genre) {
+//     result += value.name + " ";
+//   }
+//   genresName.innerText = `Genre(s): ${result}`;
+//   detailsContainer.appendChild(genresName);
+  
+//   let overview = document.createElement("div");
+//   overview.innerText = `Overview: ${elem.overview}`;
+//   detailsContainer.appendChild(overview);
+
+//   let voteAverage = document.createElement("div");
+//   voteAverage.innerText = `Score: ${elem.vote_average}`;
+//   detailsContainer.appendChild(voteAverage);
+
+//   buttonCloseModal.setAttribute("id", "closeButton"); //button for closing modal
+//   buttonCloseModal.innerText = "Close"; //naming button
+//   detailsContainer.appendChild(buttonCloseModal); //append to the detailContainer (a dialog, not a div?)
+//   detailsContainer.showModal();
+
+//   let testDiv = document.createElement("div"); //div test to try to understand WHY it doesn't work when  putting things in two divs
+//   testDiv.innerText = "Bonjour";
+//   testDiv.classList.add("test");
+//   detailsContainer.appendChild(testDiv);
+// }
+
+function displayPosters(elem) {
   let poster = document.createElement("img");
   poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`;
-  detailsContainer.appendChild(poster);
 
+  let posterDiv = document.createElement("div");
+  posterDiv.classList.add("posterDiv");
+  posterDiv.appendChild(poster);
+  detailsContainer.appendChild(posterDiv);
+}
+
+function displayOtherDetails(elem) {
   let title = document.createElement("div");
   title.innerText = `Title: ${elem.title}`;
-  detailsContainer.appendChild(title);
 
   let releaseDate = document.createElement("div");
   releaseDate.innerText = `Release date: ${elem.release_date}`;
-  detailsContainer.appendChild(releaseDate);
 
   let runtime = document.createElement("div");
   runtime.innerText = `Runtime: ${elem.runtime} minutes`;
-  detailsContainer.appendChild(runtime);
 
   let genre = elem.genres;
   let genresName = document.createElement("div");
@@ -105,25 +153,30 @@ function displayDetails(elem) {
     result += value.name + " ";
   }
   genresName.innerText = `Genre(s): ${result}`;
-  detailsContainer.appendChild(genresName);
   
   let overview = document.createElement("div");
   overview.innerText = `Overview: ${elem.overview}`;
-  detailsContainer.appendChild(overview);
 
   let voteAverage = document.createElement("div");
   voteAverage.innerText = `Score: ${elem.vote_average}`;
-  detailsContainer.appendChild(voteAverage);
+  
+  let detailsDiv = document.createElement("div");
+  detailsDiv.classList.add("detailsDiv");
+  detailsDiv.appendChild(title);
+  detailsDiv.appendChild(releaseDate);
+  detailsDiv.appendChild(runtime);
+  detailsDiv.appendChild(genresName);
+  detailsDiv.appendChild(overview);
+  detailsDiv.appendChild(voteAverage);
+  detailsContainer.appendChild(detailsDiv);
 
+}
+
+function displayCloseButton() {
   buttonCloseModal.setAttribute("id", "closeButton"); //button for closing modal
   buttonCloseModal.innerText = "Close"; //naming button
   detailsContainer.appendChild(buttonCloseModal); //append to the detailContainer (a dialog, not a div?)
   detailsContainer.showModal();
-
-  let testDiv = document.createElement("div"); //div test to try to understand WHY it doesn't work when  putting things in two divs
-  testDiv.innerText = "Bonjour";
-  testDiv.classList.add("test");
-  detailsContainer.appendChild(testDiv);
 }
 
 function createDiv(list, elem, number) {
@@ -164,7 +217,10 @@ async function moviesDetails(id_movie) {
     const dataDetails = await response.json();
     console.log(dataDetails);
 
-    displayDetails(dataDetails);
+    displayPosters(dataDetails);
+    displayOtherDetails(dataDetails);
+    displayCloseButton();
+    // displayDetails(dataDetails);
 
   } catch (error) {
     console.error("Failed to catch data details:", error);
