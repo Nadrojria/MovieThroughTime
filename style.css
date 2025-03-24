@@ -64,7 +64,7 @@ header {
     display: flex;
 }
 
-.titlePoster {
+.titlePosterThree {
     display: flex;
     flex-direction: column;
     text-overflow: ellipsis;
@@ -88,7 +88,7 @@ header {
     max-width: 100%;
 }
 
-.titlePosterLastSeven {
+.titlePosterSeven {
     display: flex;
     flex-direction: column;
 }

@@ -50,8 +50,8 @@ function getEvolution() {
   intervalID = setInterval(() => {
     count++;
     if (count < urlArray.length) {
-    decadeContainer.innerHTML = "";
-    getDecade(urlArray[count]);
+      decadeContainer.innerHTML = "";
+      getDecade(urlArray[count]);
     } else {
       clearInterval(intervalID);
       selectDecade.disabled = false;
@@ -59,7 +59,7 @@ function getEvolution() {
   }, 2000);
 }
 
-function movieList () {
+function movieList() {
   let moviesList = document.createElement("ol");
   decadeContainer.appendChild(moviesList);
   return moviesList;
@@ -79,74 +79,78 @@ function TheLastSeven(list) {
   return divLastSeven;
 }
 
-function displayDetails(elem){
+function displayDetails(elem) {
+  let poster = document.createElement("img");
+  poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`;
+  detailsContainer.appendChild(poster);
+
   let title = document.createElement("div");
-  title.innerText = elem.title;
+  title.innerText = `Title: ${elem.title}`;
   detailsContainer.appendChild(title);
 
-  let runtime = document.createElement("div");
-  runtime.innerText = elem.runtime;
-  detailsContainer.appendChild(runtime);
-
-  let overview = document.createElement("div");
-  overview.innerText = elem.overview;
-  detailsContainer.appendChild(overview);
-
   let releaseDate = document.createElement("div");
-  releaseDate.innerText = elem.release_date;
+  releaseDate.innerText = `Release date: ${elem.release_date}`;
   detailsContainer.appendChild(releaseDate);
 
-  let voteAverage = document.createElement("div");
-  voteAverage.innerText = elem.vote_average;
-  detailsContainer.appendChild(voteAverage);
-  
-  let poster = document.createElement("img");
-  poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`; 
-  detailsContainer.appendChild(poster);
+  let runtime = document.createElement("div");
+  runtime.innerText = `Runtime: ${elem.runtime} minutes`;
+  detailsContainer.appendChild(runtime);
 
   let genre = elem.genres;
   let genresName = document.createElement("div");
-  genresName.innerText = genre.name;
+  let result = "";
+  for (let value of genre) {
+    result += value.name + " ";
+  }
+  genresName.innerText = `Genre(s): ${result}`;
   detailsContainer.appendChild(genresName);
+  
+  let overview = document.createElement("div");
+  overview.innerText = `Overview: ${elem.overview}`;
+  detailsContainer.appendChild(overview);
 
+  let voteAverage = document.createElement("div");
+  voteAverage.innerText = `Score: ${elem.vote_average}`;
+  detailsContainer.appendChild(voteAverage);
 }
 
-function createDivTopThree(list, elem) {
+function createDiv(list, elem, number) {
   let titlePoster = document.createElement("div");
-  titlePoster.classList.add("titlePoster");
+  titlePoster.classList.add(`titlePoster${number}`);
   list.appendChild(titlePoster);
 
   let poster = document.createElement("img");
-  poster.classList.add("moviePosterThree");
+  poster.classList.add(`moviePoster${number}`);
   poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`; //correspond à un setAttribute
   titlePoster.appendChild(poster);
-  
+
   let movie = document.createElement("li");
   movie.classList.add("title");
   movie.innerText = elem.title;
   titlePoster.appendChild(movie);
 
   poster.addEventListener("click", () => {
+    detailsContainer.innerHTML = "";
     moviesDetails(elem.id);
   })
 
 }
 
-function createDivLastSeven(list, elem) {
-  let titlePoster = document.createElement("div");
-  titlePoster.classList.add("titlePosterLastSeven");
-  list.appendChild(titlePoster);
+// function createDivLastSeven(list, elem) {
+  // let titlePoster = document.createElement("div");
+  // titlePoster.classList.add("titlePosterLastSeven");
+  // list.appendChild(titlePoster);
 
-  let poster = document.createElement("img");
-  poster.classList.add("moviePosterSeven");
-  poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`; //correspond à un setAttribute
-  titlePoster.appendChild(poster);
-  
-  let movie = document.createElement("li");
-  movie.classList.add("title");
-  movie.innerText = elem.title;
-  titlePoster.appendChild(movie);
-}
+  // let poster = document.createElement("img");
+  // poster.classList.add("moviePosterSeven");
+  // poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`; //correspond à un setAttribute
+  // titlePoster.appendChild(poster);
+
+  // let movie = document.createElement("li");
+  // movie.classList.add("title");
+  // movie.innerText = elem.title;
+  // titlePoster.appendChild(movie);
+// }
 
 function fetchID(elem) {
   let fetchId = elem.id;
@@ -157,17 +161,17 @@ function fetchID(elem) {
 /****PRINCIPAL FUNCTIONS******
  ****************************/
 
+let arrayDataDetails = [];
 async function moviesDetails(id_movie) {
   try {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id_movie}`, options);
     const dataDetails = await response.json();
-    
-    dataDetails.forEach((element) => {
-      displayDetails(element);
-    })
+    console.log(dataDetails);
+
+    displayDetails(dataDetails);
 
   } catch (error) {
-  console.error("Failed to catch data details:", error);
+    console.error("Failed to catch data details:", error);
   }
 }
 
@@ -186,12 +190,12 @@ async function getDecade(url) {
     let listLastSeven = TheLastSeven(listOfMovies);
 
     topThree.forEach((element) => {
-      createDivTopThree(listTopThree, element);
+      createDiv(listTopThree, element, "Three");
       fetchID(element);
     });
-    
+
     topLastSeven.forEach((element) => {
-      createDivLastSeven(listLastSeven, element);
+      createDiv(listLastSeven, element, "Seven");
       fetchID(element);
     });
     console.log(listId);
