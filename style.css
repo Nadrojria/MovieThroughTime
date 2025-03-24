@@ -23,6 +23,7 @@ body {
     background-position: center;
     height: 100vh;
     color: white;
+    margin: 0px;
 }
 
 #buttonEvolution {
@@ -33,6 +34,7 @@ body {
     margin-left: 10%;
     margin-right: 2%;
 }
+
 #buttonStopEvolution {
     border-radius: 25%;
     height: 3em;
@@ -48,12 +50,35 @@ body {
 
 header {
     display: flex;
+    border-bottom: solid;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(87, 86, 86, 0.619);
+    margin-bottom: 10px;
+}
+
+footer {
+    border-top: solid;
+    position: absolute;
+    padding-left: 10px;
+    padding-right: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(87, 86, 86, 0.619);
 }
 
 .title {
     margin-right: 10%;
     margin-top: 0.5%;
     margin-bottom: 0.5%;
+}
+
+.selectDecade{
+    margin-left: 10px;
 }
 
 .description {
