@@ -114,6 +114,16 @@ function displayDetails(elem) {
   let voteAverage = document.createElement("div");
   voteAverage.innerText = `Score: ${elem.vote_average}`;
   detailsContainer.appendChild(voteAverage);
+
+  buttonCloseModal.setAttribute("id", "closeButton"); //button for closing modal
+  buttonCloseModal.innerText = "Close"; //naming button
+  detailsContainer.appendChild(buttonCloseModal); //append to the detailContainer (a dialog, not a div?)
+  detailsContainer.showModal();
+
+  let testDiv = document.createElement("div"); //div test to try to understand WHY it doesn't work when  putting things in two divs
+  testDiv.innerText = "Bonjour";
+  testDiv.classList.add("test");
+  detailsContainer.appendChild(testDiv);
 }
 
 function createDiv(list, elem, number) {
@@ -130,35 +140,12 @@ function createDiv(list, elem, number) {
   movie.classList.add("title");
   movie.innerText = elem.title;
   titlePoster.appendChild(movie);
-
   
   poster.addEventListener("click", () => {
     detailsContainer.innerHTML = "";
-    // let buttonCloseModal = document.createElement("button");
-    buttonCloseModal.setAttribute("id", "closeButton");
-    buttonCloseModal.innerText = "Close";
-    detailsContainer.appendChild(buttonCloseModal);
     moviesDetails(elem.id);
-    detailsContainer.showModal();
   })
-
 }
-
-// function createDivLastSeven(list, elem) {
-  // let titlePoster = document.createElement("div");
-  // titlePoster.classList.add("titlePosterLastSeven");
-  // list.appendChild(titlePoster);
-
-  // let poster = document.createElement("img");
-  // poster.classList.add("moviePosterSeven");
-  // poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`; //correspond à un setAttribute
-  // titlePoster.appendChild(poster);
-
-  // let movie = document.createElement("li");
-  // movie.classList.add("title");
-  // movie.innerText = elem.title;
-  // titlePoster.appendChild(movie);
-// }
 
 function fetchID(elem) {
   let fetchId = elem.id;
@@ -170,6 +157,7 @@ function fetchID(elem) {
  ****************************/
 
 let arrayDataDetails = [];
+
 async function moviesDetails(id_movie) {
   try {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id_movie}`, options);
