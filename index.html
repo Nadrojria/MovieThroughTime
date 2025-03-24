@@ -13,11 +13,16 @@
 <body>
     <header>
         <h1 class="title">Movie<div class="titleThrough">Through</div><div class="titleTime">Time</div></h1>
-        <button id="buttonEvolution"><img src="playbutton.png" alt="playButton" class="play-button-img"></button>
-        <button id="buttonStopEvolution"><img src="stop button.png" alt="stopButton" class="stop-button-img"></button>
+        <div class="buttonsAndLabel">
+            <p>Launching the Evolution</p>
+            <div class="buttons">
+                <button id="buttonEvolution" class="buttonEvolution">Play</button>
+                <button id="buttonStopEvolution" class="buttonStopEvolution">Stop</button>
+            </div>
+        </div>
         <h4 class="description">Come to time travel with us. Discover the best movies of each decade. Make yourself confortable, grab a snack <em>but be f*cking quiet please</em>!</h4>
     </header>
-    <label for="selectDecade" class="selectDecade">Choose an option</label>
+    <label for="selectDecade" class="selectDecade">Choose a decade</label>
     <select name="selectDecade" id="selectDecade">
         <option value="" selected disabled hidden></option>
         <option value="70">70's</option>
@@ -27,6 +32,7 @@
         <option value="10">10's</option>
         <option value="20">20's</option>
     </select>
+    <div id="decadeDisplay" class="decadeDisplay"></div>
     <div id="decadeContainer"></div>
     <div id="detailsContainer"></div>
     <!-- <div>

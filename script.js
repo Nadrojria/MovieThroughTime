@@ -3,6 +3,7 @@ const detailsContainer = document.querySelector("#detailsContainer");
 const selectDecade = document.querySelector("#selectDecade");
 const buttonEvolution = document.querySelector("#buttonEvolution");
 const buttonStopEvolution = document.querySelector("#buttonStopEvolution");
+const decadeDisplay = document.querySelector("#decadeDisplay");
 
 const options = {
   method: 'GET',
@@ -37,6 +38,15 @@ const urlArray = [
   urlTwentyTwenties,
 ];
 
+const yearsArray = [
+  "70's",
+  "80's",
+  "90's",
+  "00's",
+  "10's",
+  "20's",
+]
+
 let listId = [];
 
 /****SECONDARY FUNCTION******
@@ -45,13 +55,13 @@ let listId = [];
 
 function getEvolution() {
   let count = 0;
-  getDecade(urlArray[count]);
+  getDecade(urlArray[count], yearsArray[count]);
 
   intervalID = setInterval(() => {
     count++;
     if (count < urlArray.length) {
       decadeContainer.innerHTML = "";
-      getDecade(urlArray[count]);
+      getDecade(urlArray[count], yearsArray[count]);
     } else {
       clearInterval(intervalID);
       selectDecade.disabled = false;
@@ -136,26 +146,6 @@ function createDiv(list, elem, number) {
 
 }
 
-// function createDivLastSeven(list, elem) {
-  // let titlePoster = document.createElement("div");
-  // titlePoster.classList.add("titlePosterLastSeven");
-  // list.appendChild(titlePoster);
-
-  // let poster = document.createElement("img");
-  // poster.classList.add("moviePosterSeven");
-  // poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`; //correspond à un setAttribute
-  // titlePoster.appendChild(poster);
-
-  // let movie = document.createElement("li");
-  // movie.classList.add("title");
-  // movie.innerText = elem.title;
-  // titlePoster.appendChild(movie);
-// }
-
-function fetchID(elem) {
-  let fetchId = elem.id;
-  listId.push(fetchId);
-}
 
 
 /****PRINCIPAL FUNCTIONS******
@@ -176,10 +166,12 @@ async function moviesDetails(id_movie) {
 }
 
 
-async function getDecade(url) {
+async function getDecade(url, year) {
   try {
     const response = await fetch(url);
     const dataDecade = await response.json();
+
+    decadeDisplay.innerText = `Top of the ${year}`;
 
     let resultDecade = dataDecade.results;
     let topThree = resultDecade.slice(0, 3);
@@ -191,12 +183,10 @@ async function getDecade(url) {
 
     topThree.forEach((element) => {
       createDiv(listTopThree, element, "Three");
-      fetchID(element);
     });
 
     topLastSeven.forEach((element) => {
       createDiv(listLastSeven, element, "Seven");
-      fetchID(element);
     });
     console.log(listId);
 
@@ -219,22 +209,22 @@ selectDecade.addEventListener("change", () => {
 
   switch (decade) {
     case "70":
-      getDecade(urlSeventies, decade);
+      getDecade(urlSeventies, "70's");
       break;
     case "80":
-      getDecade(urlEighties, decade);
+      getDecade(urlEighties, "80's");
       break;
     case "90":
-      getDecade(urlNineties, decade);
+      getDecade(urlNineties, "90's");
       break;
     case "00":
-      getDecade(urlTwenies, decade);
+      getDecade(urlTwenies, "00's");
       break;
     case "10":
-      getDecade(urlTwentyTenies, decade);
+      getDecade(urlTwentyTenies, "10's");
       break;
     case "20":
-      getDecade(urlTwentyTwenties, decade);
+      getDecade(urlTwentyTwenties, "20's");
       break;
     default:
       break;
