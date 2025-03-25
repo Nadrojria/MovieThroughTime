@@ -310,5 +310,5 @@ buttonStopEvolution.addEventListener("click", () => {
 })
 
 buttonCloseModal.addEventListener("click", () => {
-  detailsContainer.close();
+  detailsContainer.close(); //Commentaire
 })
