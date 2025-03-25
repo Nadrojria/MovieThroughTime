@@ -151,10 +151,10 @@ function createDiv(list, elem, number) {
   poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`; //correspond à un setAttribute
   titlePoster.appendChild(poster);
 
-  let movie = document.createElement("li");
-  movie.classList.add("title");
-  movie.innerText = elem.title;
-  titlePoster.appendChild(movie);
+  let movieTitle = document.createElement("p");
+  movieTitle.classList.add(`title${number}`);
+  movieTitle.innerText = elem.title;
+  titlePoster.appendChild(movieTitle);
   
   poster.addEventListener("click", () => {
     detailsContainer.innerHTML = "";
@@ -166,7 +166,6 @@ function createDiv(list, elem, number) {
 function podium(position){
   let podiumPosition = document.createElement("div");
   podiumPosition.classList.add(`podiumPosition${position}`);
-  podiumPosition.innerText = position;
   return podiumPosition;
 }
 
