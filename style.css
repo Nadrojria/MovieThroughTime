@@ -60,6 +60,9 @@ footer {
     color: rgb(26, 25, 25);
 }
 
+.blurBackground {
+    filter: blur(1.5rem);
+}
 
 /*****BUTTONS******
 *****************/
