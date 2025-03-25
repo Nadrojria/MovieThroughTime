@@ -17,37 +17,93 @@
 }
 
 body {
+    position: relative;
     font-family: "Rowdies", sans-serif;
     background-image: url("felix-mooneeram-evlkOfkQ5rE-unsplash.jpg");
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    min-height: 100vh;
     color: white;
+    margin: 0;
+    padding-bottom: 80px;
 }
 
-#buttonEvolution {
-    border-radius: 25%;
-    height: 3em;
-    width: 3em;
-    margin-top: 5%;
-    margin-left: 10%;
-    margin-right: 2%;
-}
-#buttonStopEvolution {
-    border-radius: 25%;
-    height: 3em;
-    margin-top: 5%;
-    margin-right: 15%;
-    width: 3em;
-}
-
-.play-button-img, .stop-button-img {
-    height: 1em;
-    border-radius: 50%;
-}
+/******HEARDER********
+********FOOTER********/
 
 header {
     display: flex;
+    border-bottom: solid;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(87, 86, 86, 0.619);
+    margin-bottom: 10px;
+}
+
+footer {
+    position: absolute;
+    border-top: solid;
+    padding-left: 10px;
+    padding-right: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(87, 86, 86, 0.619);
+}
+
+/*****BUTTONS******
+*****************/
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonsAndLabel {
+    align-items: center;
+    text-align: center;
+    font-size: large;
+}
+
+button {
+   margin-top: 1em;
+   margin-bottom: 3em;
+   border-radius: 10px;
+   margin-left: 0.5em;
+   margin-right: 0.5em;
+   background-color: rgb(235, 227, 227);
+   transition: transform 0.4s;
+   padding: 15px;
+   font-family: "Rowdies", sans-serif;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+.buttonEvolution {
+    border-color: rgb(78, 211, 78);
+}
+
+.buttonStopEvolution {
+    border-color: rgb(211, 59, 59);
+}
+
+.buttonEvolution:hover {
+    background-color: rgb(78, 211, 78);
+}
+
+.buttonStopEvolution:hover {
+    background-color: rgb(211, 59, 59);
+    color: white;
 }
 
 .title {
@@ -56,8 +112,28 @@ header {
     margin-bottom: 0.5%;
 }
 
+.titleThrough {
+    margin-left: 30%;
+}
+
+.titleTime {
+    margin-left: 10%;
+}
+
+.selectDecade{
+    margin-left: 10px;
+}
+
+.decadeDisplay {
+    padding: 20px;
+    text-align: center;
+    font-size:xx-large;
+    text-decoration: underline;
+}
+
 .description {
     margin-left: 10%;
+    font-size: larger;
 }
 
 .decadeContainer {
@@ -95,7 +171,10 @@ header {
 .titlePosterThree {
     display: flex;
     flex-direction: column;
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
+    margin: 10px;
 }
 
 .topThree {
@@ -108,6 +187,7 @@ header {
 .movie {
     display: flex;
     flex-direction: column;
+    max-width: 10em;
 }
 
 .topLastSeven {
@@ -119,6 +199,11 @@ header {
 .titlePosterSeven {
     display: flex;
     flex-direction: column;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 10em;
+    margin: 10px;
 }
 
 
@@ -147,10 +232,3 @@ input[type="range"] {
     margin: 0;
 }
 
-.titleThrough {
-    margin-left: 30%;
-}
-
-.titleTime {
-    margin-left: 10%;
-}
