@@ -140,6 +140,34 @@ button:disabled {
     display: flex;
 }
 
+.detailsContainer{
+    display: inline-block;
+}
+
+.overviewContainer {
+    background-color: rgba(128, 128, 128, 0.693);
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    text-align: justify;
+}
+
+.closeButton {
+    margin-top: 0.5em;
+}
+
+:modal {
+    border: 2px solid red;
+    border-radius: 10px;
+    background-color:beige;
+    width: 50%;
+}
+
+.posterDiv img {
+    width: 20%;
+};
+
 .titlePosterThree {
     display: flex;
     flex-direction: column;

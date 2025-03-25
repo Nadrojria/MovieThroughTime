@@ -3,6 +3,7 @@ const detailsContainer = document.querySelector("#detailsContainer");
 const selectDecade = document.querySelector("#selectDecade");
 const buttonEvolution = document.querySelector("#buttonEvolution");
 const buttonStopEvolution = document.querySelector("#buttonStopEvolution");
+const buttonCloseModal = document.createElement("button");
 const decadeDisplay = document.querySelector("#decadeDisplay");
 
 const options = {
@@ -47,8 +48,6 @@ const yearsArray = [
   "20's",
 ]
 
-let listId = [];
-
 /****SECONDARY FUNCTION******
  ***************************/
 
@@ -90,22 +89,29 @@ function TheLastSeven(list) {
 }
 
 function displayDetails(elem) {
+  let detailsDiv = document.createElement("div");
+  detailsDiv.classList.add("detailsDiv");
+  
+  let posterDiv = document.createElement("div");
+  posterDiv.classList.add("posterDiv");
+  detailsContainer.appendChild(posterDiv);
+ 
   let poster = document.createElement("img");
   poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`;
-  detailsContainer.appendChild(poster);
+  posterDiv.appendChild(poster);
 
   let title = document.createElement("div");
   title.innerText = `Title: ${elem.title}`;
-  detailsContainer.appendChild(title);
+  detailsDiv.appendChild(title);
 
   let releaseDate = document.createElement("div");
   releaseDate.innerText = `Release date: ${elem.release_date}`;
-  detailsContainer.appendChild(releaseDate);
+  detailsDiv.appendChild(releaseDate);
 
   let runtime = document.createElement("div");
   runtime.innerText = `Runtime: ${elem.runtime} minutes`;
-  detailsContainer.appendChild(runtime);
-
+  detailsDiv.appendChild(runtime);
+  
   let genre = elem.genres;
   let genresName = document.createElement("div");
   let result = "";
@@ -113,15 +119,25 @@ function displayDetails(elem) {
     result += value.name + " ";
   }
   genresName.innerText = `Genre(s): ${result}`;
-  detailsContainer.appendChild(genresName);
+  detailsDiv.appendChild(genresName);
   
   let overview = document.createElement("div");
   overview.innerText = `Overview: ${elem.overview}`;
-  detailsContainer.appendChild(overview);
-
+  overview.classList.add("overviewContainer");
+  detailsDiv.appendChild(overview);
+  
   let voteAverage = document.createElement("div");
   voteAverage.innerText = `Score: ${elem.vote_average}`;
-  detailsContainer.appendChild(voteAverage);
+  detailsDiv.appendChild(voteAverage);
+
+  detailsContainer.appendChild(detailsDiv);
+}
+
+function displayCloseButton() {
+  buttonCloseModal.setAttribute("id", "closeButton"); //button for closing modal
+  buttonCloseModal.classList.add("closeButton");
+  buttonCloseModal.innerText = "Close"; //naming button
+  detailsContainer.appendChild(buttonCloseModal); //append to the detailContainer (a dialog, not a div?)
 }
 
 function createDiv(list, elem, number) {
@@ -138,7 +154,7 @@ function createDiv(list, elem, number) {
   movie.classList.add("title");
   movie.innerText = elem.title;
   titlePoster.appendChild(movie);
-
+  
   poster.addEventListener("click", () => {
     detailsContainer.innerHTML = "";
     moviesDetails(elem.id);
@@ -157,13 +173,15 @@ function podium(position){
  ****************************/
 
 let arrayDataDetails = [];
+
 async function moviesDetails(id_movie) {
   try {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id_movie}`, options);
     const dataDetails = await response.json();
-    console.log(dataDetails);
 
+    detailsContainer.showModal();
     displayDetails(dataDetails);
+    displayCloseButton();
 
   } catch (error) {
     console.error("Failed to catch data details:", error);
@@ -197,7 +215,6 @@ async function getDecade(url, year) {
     topLastSeven.forEach((element) => {
       createDiv(listLastSeven, element, "Seven");
     });
-    console.log(listId);
 
   } catch (error) {
     console.error("Failed to catch data :", error);
@@ -254,4 +271,8 @@ buttonStopEvolution.addEventListener("click", () => {
   buttonEvolution.disabled = false;
   buttonStopEvolution.disabled = true;
   clearInterval(intervalID);
+})
+
+buttonCloseModal.addEventListener("click", () => {
+  detailsContainer.close();
 })
