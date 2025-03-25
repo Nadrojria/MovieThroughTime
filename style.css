@@ -1,3 +1,5 @@
+/****FONT*****
+******************/
 .rowdies-light {
     font-family: "Rowdies", sans-serif;
     font-weight: 300;
@@ -28,15 +30,17 @@ body {
     padding-bottom: 80px;
 }
 
+
 /******HEARDER********
 ********FOOTER********/
-
 header {
     display: flex;
     border-bottom: solid;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: rgba(87, 86, 86, 0.619);
+    /* background-color: rgba(87, 86, 86, 0.619); */
+    background-color: rgba(216, 167, 103, 0.69);
+    color: rgb(26, 25, 25);
     margin-bottom: 10px;
 }
 
@@ -51,12 +55,14 @@ footer {
     text-align: center;
     display: flex;
     justify-content: space-between;
-    background-color: rgba(87, 86, 86, 0.619);
+    /* background-color: rgba(87, 86, 86, 0.619); */
+    background-color: rgba(216, 167, 103, 0.69);
+    color: rgb(26, 25, 25);
 }
+
 
 /*****BUTTONS******
 *****************/
-
 .buttons {
     display: flex;
     align-items: center;
@@ -67,6 +73,7 @@ footer {
     align-items: center;
     text-align: center;
     font-size: large;
+    width: 50%;
 }
 
 button {
@@ -106,20 +113,37 @@ button:disabled {
     color: white;
 }
 
+.closeButton {
+    margin-top: 0.5em;
+}
+
+
+/***HEADER******
+*****ELEMENT******/
 .title {
     margin-right: 10%;
     margin-top: 0.5%;
     margin-bottom: 0.5%;
+    margin-left: 5%;
 }
 
 .titleThrough {
-    margin-left: 30%;
+    margin-left: 35%;
 }
 
 .titleTime {
-    margin-left: 10%;
+    margin-left: 20%;
 }
 
+.description {
+    margin-left: 10%;
+    font-size: larger;
+    width: 40%;
+}
+
+
+/******DECADE******
+*********************/
 .selectDecade{
     margin-left: 10px;
 }
@@ -131,19 +155,13 @@ button:disabled {
     text-decoration: underline;
 }
 
-.description {
-    margin-left: 10%;
-    font-size: larger;
-}
-
 .decadeContainer {
     display: flex;
 }
 
-.detailsContainer{
-    display: inline-block;
-}
 
+/*****DETAILS******
+********************/
 .overviewContainer {
     background-color: rgba(128, 128, 128, 0.693);
     border-radius: 10px;
@@ -153,12 +171,8 @@ button:disabled {
     text-align: justify;
 }
 
-.closeButton {
-    margin-top: 0.5em;
-}
-
 :modal {
-    border: 2px solid red;
+    border: 2px solid rgb(64, 60, 60);
     border-radius: 10px;
     background-color:beige;
     width: 50%;
@@ -168,6 +182,8 @@ button:disabled {
     width: 20%;
 };
 
+/****TOP 3******
+******LAST 7********/
 .titlePosterThree {
     display: flex;
     flex-direction: column;
@@ -206,7 +222,6 @@ button:disabled {
     margin: 10px;
 }
 
-
 .moviePosterThree {
     max-width: 30%;
 }
@@ -215,20 +230,4 @@ button:disabled {
     max-width: 40%;
 }
 
-datalist {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    writing-mode:vertical-lr;
-    width: 200px;
-}
-  
-option {
-    padding: 0;
-}
-  
-input[type="range"] {
-    width: 200px;
-    margin: 0;
-}
 

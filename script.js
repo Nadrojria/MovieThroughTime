@@ -15,6 +15,7 @@ const options = {
 }
 
 let intervalID;
+let arrayDataDetails = [];
 
 const urlSeventies =
   "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1970-01-01&primary_release_date.lte=1979-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
@@ -172,8 +173,6 @@ function podium(position){
 /****PRINCIPAL FUNCTIONS******
  ****************************/
 
-let arrayDataDetails = [];
-
 async function moviesDetails(id_movie) {
   try {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id_movie}`, options);
@@ -222,7 +221,6 @@ async function getDecade(url, year) {
 }
 
 
-
 /*******START*******
  **************************/
 
@@ -231,7 +229,6 @@ buttonStopEvolution.disabled = true;
 selectDecade.addEventListener("change", () => {
   decadeContainer.innerHTML = "";
   const decade = selectDecade.value;
-  listId = [];
 
   switch (decade) {
     case "70":
