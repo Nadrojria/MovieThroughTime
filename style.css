@@ -144,7 +144,9 @@ button:disabled {
     display: flex;
     flex-direction: column;
     white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
+    margin: 10px;
 }
 
 .topThree {
@@ -157,6 +159,7 @@ button:disabled {
 .movie {
     display: flex;
     flex-direction: column;
+    max-width: 10em;
 }
 
 .topLastSeven {
@@ -168,6 +171,11 @@ button:disabled {
 .titlePosterSeven {
     display: flex;
     flex-direction: column;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 10em;
+    margin: 10px;
 }
 
 
