@@ -120,13 +120,6 @@ button:disabled {
 
 /***HEADER******
 *****ELEMENT******/
-.title {
-    margin-right: 10%;
-    margin-top: 0.5%;
-    margin-bottom: 0.5%;
-    margin-left: 5%;
-}
-
 .titleThrough {
     margin-left: 35%;
 }
@@ -200,12 +193,6 @@ button:disabled {
     justify-content: space-evenly;
 }
 
-.movie {
-    display: flex;
-    flex-direction: column;
-    max-width: 10em;
-}
-
 .topLastSeven {
     margin-top: 5%;
     display: flex;
@@ -223,11 +210,48 @@ button:disabled {
 }
 
 .moviePosterThree {
-    max-width: 30%;
+    width: 15em;
+    border-radius: 10px;
+    /*justify-content: center;*/
 }
 
 .moviePosterSeven {
-    max-width: 40%;
+    width: 10em;
+    border-radius: 10px;
+}
+
+.podiumPosition1 {
+    background-image: url("medaille-dor.png");
+    background-size: cover;
+    background-position: center;
+    height: 10em;
+    width: 10em;
+}
+
+.podiumPosition2 {
+    background-image: url("medaille-dargent.png");
+    background-size: cover;
+    background-position: center;
+    height: 10em;
+    width: 10em;
+}
+
+.podiumPosition3 {
+    background-image: url("medaille-de-bronze.png");
+    background-size: cover;
+    background-position: center;
+    height: 10em;
+    width: 10em;
+}
+
+.titleThree {
+    font-size:larger;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: antiquewhite;
+    border-radius: 7px;
+    color: rgb(19, 18, 18);
+    padding: 0.5em;
 }
 
 
