@@ -143,6 +143,7 @@ button:disabled {
 .titlePosterThree {
     display: flex;
     flex-direction: column;
+    white-space: nowrap;
     text-overflow: ellipsis;
 }
 
