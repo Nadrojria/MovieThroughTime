@@ -5,6 +5,8 @@ const buttonEvolution = document.querySelector("#buttonEvolution");
 const buttonStopEvolution = document.querySelector("#buttonStopEvolution");
 const buttonCloseModal = document.createElement("button");
 const decadeDisplay = document.querySelector("#decadeDisplay");
+const body = document.querySelector("body");
+const bodyClass = body.classList;
 
 const options = {
   method: 'GET',
@@ -159,6 +161,7 @@ function createDiv(list, elem, number) {
   poster.addEventListener("click", () => {
     detailsContainer.innerHTML = "";
     moviesDetails(elem.id);
+    bodyClass.add("blurBackground");
   })
  return titlePoster;
 }
@@ -272,4 +275,5 @@ buttonStopEvolution.addEventListener("click", () => {
 
 buttonCloseModal.addEventListener("click", () => {
   detailsContainer.close();
+  bodyClass.remove("blurBackground");
 })
