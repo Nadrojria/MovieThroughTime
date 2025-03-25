@@ -143,10 +143,15 @@ function createDiv(list, elem, number) {
     detailsContainer.innerHTML = "";
     moviesDetails(elem.id);
   })
-
+ return titlePoster;
 }
 
-
+function podium(position){
+  let podiumPosition = document.createElement("div");
+  podiumPosition.classList.add(`podiumPosition${position}`);
+  podiumPosition.innerText = position;
+  return podiumPosition;
+}
 
 /****PRINCIPAL FUNCTIONS******
  ****************************/
@@ -176,13 +181,17 @@ async function getDecade(url, year) {
     let resultDecade = dataDecade.results;
     let topThree = resultDecade.slice(0, 3);
     let topLastSeven = resultDecade.slice(3, 10);
+    let count = 1;
 
     let listOfMovies = movieList();
     let listTopThree = TheTopThree(listOfMovies);
     let listLastSeven = TheLastSeven(listOfMovies);
 
     topThree.forEach((element) => {
-      createDiv(listTopThree, element, "Three");
+      let position = podium(count);
+      let podiumResult = createDiv(listTopThree, element, "Three");
+      podiumResult.appendChild(position);
+      count ++;
     });
 
     topLastSeven.forEach((element) => {
