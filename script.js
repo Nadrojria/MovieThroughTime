@@ -5,6 +5,8 @@ const buttonEvolution = document.querySelector("#buttonEvolution");
 const buttonStopEvolution = document.querySelector("#buttonStopEvolution");
 const buttonCloseModal = document.createElement("button");
 const decadeDisplay = document.querySelector("#decadeDisplay");
+const body = document.querySelector("body");
+const bodyClass = body.classList;
 
 const options = {
   method: 'GET',
@@ -55,14 +57,17 @@ const yearsArray = [
 
 function getEvolution() {
   let count = 0;
+  decadeContainer.classList.add("fade-in");
   getDecade(urlArray[count], yearsArray[count]);
 
   intervalID = setInterval(() => {
     count++;
     if (count < urlArray.length) {
       decadeContainer.innerHTML = "";
+      decadeContainer.classList.add("fade-in");
       getDecade(urlArray[count], yearsArray[count]);
     } else {
+      decadeContainer.classList.remove("fade-in");
       clearInterval(intervalID);
       selectDecade.disabled = false;
     }
@@ -151,16 +156,16 @@ function createDiv(list, elem, number) {
   poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`; //correspond à un setAttribute
   titlePoster.appendChild(poster);
 
-  let movie = document.createElement("li");
-  movie.classList.add("title");
-  movie.innerText = elem.title;
-  titlePoster.appendChild(movie);
+  let movieTitle = document.createElement("p");
+  movieTitle.classList.add(`title${number}`);
+  movieTitle.innerText = elem.title;
+  titlePoster.appendChild(movieTitle);
   
   poster.addEventListener("click", () => {
     detailsContainer.innerHTML = "";
     moviesDetails(elem.id);
     detailsContainer.classList.add("modalFadeIn");
-
+    bodyClass.add("blurBackground");
   })
  return titlePoster;
 }
@@ -168,7 +173,6 @@ function createDiv(list, elem, number) {
 function podium(position){
   let podiumPosition = document.createElement("div");
   podiumPosition.classList.add(`podiumPosition${position}`);
-  podiumPosition.innerText = position;
   return podiumPosition;
 }
 
@@ -231,6 +235,7 @@ buttonStopEvolution.disabled = true;
 selectDecade.addEventListener("change", () => {
   decadeContainer.innerHTML = "";
   const decade = selectDecade.value;
+  decadeContainer.classList.remove("fade-in");
 
   switch (decade) {
     case "70":
@@ -266,6 +271,7 @@ buttonEvolution.addEventListener("click", () => {
 });
 
 buttonStopEvolution.addEventListener("click", () => {
+  decadeContainer.classList.remove("fade-in");
   selectDecade.disabled = false;
   buttonEvolution.disabled = false;
   buttonStopEvolution.disabled = true;
@@ -275,4 +281,5 @@ buttonStopEvolution.addEventListener("click", () => {
 buttonCloseModal.addEventListener("click", () => {
   detailsContainer.close();
   decadeContainer.classList.remove("modalFadeIn");
+  bodyClass.remove("blurBackground");
 })
