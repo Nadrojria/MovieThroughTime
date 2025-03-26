@@ -1,6 +1,5 @@
 import {apikey, token} from "./keyapi.js";
 
-
 const decadeContainer = document.querySelector("#decadeContainer");
 const detailsContainer = document.querySelector("#detailsContainer");
 const selectDecade = document.querySelector("#selectDecade");
