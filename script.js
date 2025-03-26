@@ -164,6 +164,7 @@ function createDiv(list, elem, number) {
   poster.addEventListener("click", () => {
     detailsContainer.innerHTML = "";
     moviesDetails(elem.id);
+    detailsContainer.classList.add("modalFadeIn");
     bodyClass.add("blurBackground");
   })
  return titlePoster;
@@ -279,5 +280,6 @@ buttonStopEvolution.addEventListener("click", () => {
 
 buttonCloseModal.addEventListener("click", () => {
   detailsContainer.close();
+  decadeContainer.classList.remove("modalFadeIn");
   bodyClass.remove("blurBackground");
 })
