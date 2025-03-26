@@ -18,6 +18,9 @@
     font-style: normal;
 }
 
+
+/******BODY*******
+*******************/
 body {
     position: relative;
     font-family: "Rowdies", sans-serif;
@@ -55,14 +58,10 @@ footer {
     text-align: center;
     display: flex;
     justify-content: space-between;
-    /* background-color: rgba(87, 86, 86, 0.619); */
     background-color: rgba(216, 167, 103, 0.69);
     color: rgb(26, 25, 25);
 }
 
-.blurBackground {
-    filter: blur(1.5rem);
-}
 
 /*****BUTTONS******
 *****************/
@@ -155,30 +154,13 @@ button:disabled {
     display: flex;
 }
 
-.modalFadeIn {
-    animation: fadeIn 1s;
-}
-@keyframes fadeIn {
-    0% { opacity: 0; };
-  100% { opacity: 1; };
-}
-
 .decadeContainers {
-    min-height: 1200px;
+    min-height: 1000px;
 }
 
 
 /*****DETAILS******
 ********************/
-.overviewContainer {
-    background-color: rgba(128, 128, 128, 0.693);
-    border-radius: 10px;
-    padding: 5px;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    text-align: justify;
-}
-
 :modal {
     border: 2px solid rgb(64, 60, 60);
     border-radius: 10px;
@@ -189,6 +171,16 @@ button:disabled {
 .posterDiv img {
     width: 20%;
 }
+
+.overviewContainer {
+    background-color: rgba(128, 128, 128, 0.693);
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    text-align: justify;
+}
+
 
 /****TOP 3******
 ******LAST 7********/
@@ -214,20 +206,9 @@ button:disabled {
     max-width: 100%;
 }
 
-/* .titlePosterSeven {
-    display: flex;
-    flex-direction: column;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 10em;
-    margin: 10px;
-} */
-
 .moviePosterThree {
     width: 15em;
     border-radius: 10px;
-    /*justify-content: center;*/
 }
 
 .moviePosterSeven {
@@ -271,22 +252,9 @@ button:disabled {
     padding: 0.5em;
 }
 
-.fade-in {
-    animation: fadeIn infinite alternate ease 2s;  
-  }
-  
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
 
 /******FILM*******
 *******STRIP******/
-
 .titlePosterSeven {
     top: 200px;
     transform: translate(-10%);
@@ -295,8 +263,9 @@ button:disabled {
     background: #111111;
     overflow: hidden;
   }
+
   /*Dotted effect*/
-  .titlePosterSeven::before {
+.titlePosterSeven::before {
     content: "";
     position: absolute;
     top: 4px;
@@ -305,9 +274,9 @@ button:disabled {
     height: 8px;
     background: #5e5e5e;
     box-shadow: 15px 0px 0px #5e5e5e, 30px 0px 0px #5e5e5e, 45px 0px 0px #5e5e5e, 60px 0px 0px #5e5e5e, 75px 0px 0px #5e5e5e, 90px 0px 0px #5e5e5e, 105px 0px 0px #5e5e5e, 120px 0px 0px #5e5e5e, 135px 0px 0px #5e5e5e, 150px 0px 0px #5e5e5e, 165px 0px 0px #5e5e5e, 180px 0px 0px #5e5e5e, 200px 0px 0px #5e5e5e, 214px 0px 0px #5e5e5e, 228px 0px 0px #5e5e5e, 238px 0px 0px #5e5e5f, 252px 0px 0px #5e5e5e, 266px 0px 0px #5e5e5e, 280px 0px 0px #5e5e5e, 294px 0px 0px #5e5e5e, 308px 0px 0px #5e5e5e;
-  }
+}
   
-  .titlePosterSeven::after {
+.titlePosterSeven::after {
     content: "";
     position: absolute;
     bottom: 4px;
@@ -316,4 +285,26 @@ button:disabled {
     height: 8px;
     background: #5e5e5e;
     box-shadow: 15px 0px 0px #5e5e5e, 30px 0px 0px #5e5e5e, 45px 0px 0px #5e5e5e, 60px 0px 0px #5e5e5e, 75px 0px 0px #5e5e5e, 90px 0px 0px #5e5e5e, 105px 0px 0px #5e5e5e, 120px 0px 0px #5e5e5e, 135px 0px 0px #5e5e5e, 150px 0px 0px #5e5e5e, 165px 0px 0px #5e5e5e, 180px 0px 0px #5e5e5e, 200px 0px 0px #5e5e5e, 214px 0px 0px #5e5e5e, 228px 0px 0px #5e5e5e, 238px 0px 0px #5e5e5f, 252px 0px 0px #5e5e5e, 266px 0px 0px #5e5e5e, 280px 0px 0px #5e5e5e, 294px 0px 0px #5e5e5e, 308px 0px 0px #5e5e5e;
-  }
+}
+
+/*****BLUR AND FADE****
+************************/
+.blurBackground {
+    filter: blur(1.5rem);
+}
+
+.modalFadeIn {
+    animation: fadeIn 1s;
+}
+
+.fade-in {
+    animation: fadeIn infinite alternate ease 2s;  
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; };
+  100% { opacity: 1; };
+}
+
+
+

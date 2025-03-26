@@ -8,17 +8,6 @@ const decadeDisplay = document.querySelector("#decadeDisplay");
 const body = document.querySelector("body");
 const bodyClass = body.classList;
 
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwN2Q0MmY1YWJkZTQxOTZjMjU5NWU3NWY5ZWUwOTc1YSIsIm5iZiI6MTc0MjIwODExMi45NDgsInN1YiI6IjY3ZDdmYzcwMzE2NzhjYzNmODAxYTdkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3IbqW6n5lro3z8X40WTDt5fpLO4niF6uWAt3EaEiEAo'
-  }
-}
-
-let intervalID;
-let arrayDataDetails = [];
-
 const urlSeventies =
   "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1970-01-01&primary_release_date.lte=1979-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
 const urlEighties =
@@ -32,6 +21,13 @@ const urlTwentyTenies =
 const urlTwentyTwenties =
   "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2020-01-01&primary_release_date.lte=2029-12-31&sort_by=vote_average.desc&vote_count.gte=10000&api_key=07d42f5abde4196c2595e75f9ee0975a";
 
+const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwN2Q0MmY1YWJkZTQxOTZjMjU5NWU3NWY5ZWUwOTc1YSIsIm5iZiI6MTc0MjIwODExMi45NDgsInN1YiI6IjY3ZDdmYzcwMzE2NzhjYzNmODAxYTdkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3IbqW6n5lro3z8X40WTDt5fpLO4niF6uWAt3EaEiEAo'
+  }
+}
 
 const urlArray = [
   urlSeventies,
@@ -51,10 +47,12 @@ const yearsArray = [
   "20's",
 ]
 
+let intervalID;
+let arrayDataDetails = [];
+
+
 /****SECONDARY FUNCTION******
  ***************************/
-
-
 function getEvolution() {
   let count = 0;
   decadeContainer.classList.add("fade-in");
@@ -176,9 +174,9 @@ function podium(position){
   return podiumPosition;
 }
 
+
 /****PRINCIPAL FUNCTIONS******
  ****************************/
-
 async function moviesDetails(id_movie) {
   try {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id_movie}`, options);
@@ -192,7 +190,6 @@ async function moviesDetails(id_movie) {
     console.error("Failed to catch data details:", error);
   }
 }
-
 
 async function getDecade(url, year) {
   try {
@@ -228,8 +225,7 @@ async function getDecade(url, year) {
 
 
 /*******START*******
- **************************/
-
+ *******************/
 buttonStopEvolution.disabled = true;
 
 selectDecade.addEventListener("change", () => {
