@@ -57,18 +57,21 @@ const yearsArray = [
 
 function getEvolution() {
   let count = 0;
+  decadeContainer.classList.add("fade-in");
   getDecade(urlArray[count], yearsArray[count]);
 
   intervalID = setInterval(() => {
     count++;
     if (count < urlArray.length) {
       decadeContainer.innerHTML = "";
+      decadeContainer.classList.add("fade-in");
       getDecade(urlArray[count], yearsArray[count]);
     } else {
+      decadeContainer.classList.remove("fade-in");
       clearInterval(intervalID);
       selectDecade.disabled = false;
     }
-  }, 2000);
+  }, 4000);
 }
 
 function movieList() {
@@ -231,6 +234,7 @@ buttonStopEvolution.disabled = true;
 selectDecade.addEventListener("change", () => {
   decadeContainer.innerHTML = "";
   const decade = selectDecade.value;
+  decadeContainer.classList.remove("fade-in");
 
   switch (decade) {
     case "70":
@@ -266,6 +270,7 @@ buttonEvolution.addEventListener("click", () => {
 });
 
 buttonStopEvolution.addEventListener("click", () => {
+  decadeContainer.classList.remove("fade-in");
   selectDecade.disabled = false;
   buttonEvolution.disabled = false;
   buttonStopEvolution.disabled = true;
