@@ -66,7 +66,7 @@ function getEvolution() {
       clearInterval(intervalID);
       selectDecade.disabled = false;
     }
-  }, 2000);
+  }, 4000);
 }
 
 function movieList() {
@@ -159,6 +159,8 @@ function createDiv(list, elem, number) {
   poster.addEventListener("click", () => {
     detailsContainer.innerHTML = "";
     moviesDetails(elem.id);
+    detailsContainer.classList.add("modalFadeIn");
+
   })
  return titlePoster;
 }
@@ -272,4 +274,5 @@ buttonStopEvolution.addEventListener("click", () => {
 
 buttonCloseModal.addEventListener("click", () => {
   detailsContainer.close();
+  decadeContainer.classList.remove("modalFadeIn");
 })

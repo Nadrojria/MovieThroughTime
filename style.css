@@ -159,6 +159,14 @@ button:disabled {
     display: flex;
 }
 
+.modalFadeIn {
+    animation: fadeIn 1s;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; };
+  100% { opacity: 1; };
+}
+
 
 /*****DETAILS******
 ********************/
@@ -180,7 +188,7 @@ button:disabled {
 
 .posterDiv img {
     width: 20%;
-};
+}
 
 /****TOP 3******
 ******LAST 7********/
@@ -229,5 +237,3 @@ button:disabled {
 .moviePosterSeven {
     max-width: 40%;
 }
-
-
