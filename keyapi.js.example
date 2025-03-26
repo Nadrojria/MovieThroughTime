@@ -1,0 +1,3 @@
+export const apikey = "example";
+
+export const token = "example";

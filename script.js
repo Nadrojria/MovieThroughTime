@@ -1,3 +1,6 @@
+import {apikey, token} from "./keyapi.js";
+
+
 const decadeContainer = document.querySelector("#decadeContainer");
 const detailsContainer = document.querySelector("#detailsContainer");
 const selectDecade = document.querySelector("#selectDecade");
@@ -9,23 +12,23 @@ const body = document.querySelector("body");
 const bodyClass = body.classList;
 
 const urlSeventies =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1970-01-01&primary_release_date.lte=1979-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1970-01-01&primary_release_date.lte=1979-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=" + apikey;
 const urlEighties =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1980-01-01&primary_release_date.lte=1989-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1980-01-01&primary_release_date.lte=1989-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=" + apikey;
 const urlNineties =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&sort_by=vote_average.desc&vote_count.gte=5000&api_key=" + apikey;
 const urlTwenies =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2000-01-01&primary_release_date.lte=2009-12-31&sort_by=vote_average.desc&vote_count.gte=10000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2000-01-01&primary_release_date.lte=2009-12-31&sort_by=vote_average.desc&vote_count.gte=10000&api_key=" + apikey;
 const urlTwentyTenies =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2010-01-01&primary_release_date.lte=2019-12-31&sort_by=vote_average.desc&vote_count.gte=20000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2010-01-01&primary_release_date.lte=2019-12-31&sort_by=vote_average.desc&vote_count.gte=20000&api_key=" + apikey;
 const urlTwentyTwenties =
-  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2020-01-01&primary_release_date.lte=2029-12-31&sort_by=vote_average.desc&vote_count.gte=10000&api_key=07d42f5abde4196c2595e75f9ee0975a";
+  "https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte=2020-01-01&primary_release_date.lte=2029-12-31&sort_by=vote_average.desc&vote_count.gte=10000&api_key=" + apikey;
 
 const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwN2Q0MmY1YWJkZTQxOTZjMjU5NWU3NWY5ZWUwOTc1YSIsIm5iZiI6MTc0MjIwODExMi45NDgsInN1YiI6IjY3ZDdmYzcwMzE2NzhjYzNmODAxYTdkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3IbqW6n5lro3z8X40WTDt5fpLO4niF6uWAt3EaEiEAo'
+    Authorization: 'Bearer ' + token
   }
 }
 
@@ -144,13 +147,13 @@ function displayCloseButton() {
   detailsContainer.appendChild(buttonCloseModal); //append to the detailContainer (a dialog, not a div?)
 }
 
-function createDiv(list, elem, number) {
+function createDiv(list, elem, number, position) {
   let titlePoster = document.createElement("div");
   titlePoster.classList.add(`titlePoster${number}`);
   list.appendChild(titlePoster);
 
   let poster = document.createElement("img");
-  poster.classList.add(`moviePoster${number}`);
+  poster.classList.add(`moviePoster${number}${position}`);
   poster.src = `https://image.tmdb.org/t/p/w500${elem.poster_path}`; //correspond à un setAttribute
   titlePoster.appendChild(poster);
 
@@ -168,11 +171,11 @@ function createDiv(list, elem, number) {
  return titlePoster;
 }
 
-function podium(position){
-  let podiumPosition = document.createElement("div");
-  podiumPosition.classList.add(`podiumPosition${position}`);
-  return podiumPosition;
-}
+// function podium(position){
+//   let podiumPosition = document.createElement("div");
+//   podiumPosition.classList.add(`podiumPosition${position}`);
+//   return podiumPosition;
+// }
 
 
 /****PRINCIPAL FUNCTIONS******
@@ -208,14 +211,12 @@ async function getDecade(url, year) {
     let listLastSeven = TheLastSeven(listOfMovies);
 
     topThree.forEach((element) => {
-      let position = podium(count);
-      let podiumResult = createDiv(listTopThree, element, "Three");
-      podiumResult.appendChild(position);
+      createDiv(listTopThree, element, "Three", count);
       count ++;
     });
 
     topLastSeven.forEach((element) => {
-      createDiv(listLastSeven, element, "Seven");
+      createDiv(listLastSeven, element, "Seven", count);
     });
 
   } catch (error) {

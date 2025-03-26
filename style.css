@@ -28,7 +28,7 @@ body {
     background-size: cover;
     background-position: center;
     min-height: 100vh;
-    color: white;
+    color: beige;
     margin: 0;
     padding-bottom: 80px;
 }
@@ -38,18 +38,15 @@ body {
 ********FOOTER********/
 header {
     display: flex;
-    border-bottom: solid;
     padding-left: 10px;
     padding-right: 10px;
-    /* background-color: rgba(87, 86, 86, 0.619); */
-    background-color: rgba(216, 167, 103, 0.69);
-    color: rgb(26, 25, 25);
+    background-color: rgb(0, 0, 0); /*ajout*/
+    color:beige; /*ajout*/
     margin-bottom: 10px;
 }
 
 footer {
     position: absolute;
-    border-top: solid;
     padding-left: 10px;
     padding-right: 10px;
     bottom: 0;
@@ -58,8 +55,8 @@ footer {
     text-align: center;
     display: flex;
     justify-content: space-between;
-    background-color: rgba(216, 167, 103, 0.69);
-    color: rgb(26, 25, 25);
+    background-color: rgb(0, 0, 0);/*ajout*/
+    color:beige; /*ajout*/
 }
 
 
@@ -122,6 +119,10 @@ button:disabled {
 
 /***HEADER******
 *****ELEMENT******/
+h1 {
+    margin-left: 3%; /*ajout*/
+}
+
 .titleThrough {
     margin-left: 35%;
 }
@@ -132,7 +133,9 @@ button:disabled {
 
 .description {
     margin-left: 10%;
+    margin-right: 3%;/*ajout*/
     font-size: larger;
+    text-align: justify;/*ajout*/
     width: 40%;
 }
 
@@ -155,7 +158,7 @@ button:disabled {
 }
 
 .decadeContainers {
-    min-height: 1000px;
+    min-height: 650px;
 }
 
 
@@ -201,24 +204,39 @@ button:disabled {
 }
 
 .topLastSeven {
-    margin-top: 5%;
     display: flex;
     max-width: 100%;
 }
 
-.moviePosterThree {
-    width: 15em;
+.moviePosterThree1 {
+    width: 10em;
     border-radius: 10px;
+    border: solid 7px;
+    border-color: #ffd700;
 }
 
-.moviePosterSeven {
+.moviePosterThree2 {
+    width: 10em;
+    border-radius: 10px;
+    border: solid 7px;
+    border-color: #c0c0c0;
+}
+
+.moviePosterThree3 {
+    width: 10em;
+    border-radius: 10px;
+    border: solid 7px;
+    border-color: #cd7f32;
+}
+
+.moviePosterSeven4 {
     margin-top: 15px;
     margin-left: 50px;
     width: 5em;
     box-shadow: 0px 0px 10px 0px #9f9c9c;
 }
 
-.podiumPosition1 {
+/* .podiumPosition1 {
     background-image: url("medaille-dor.png");
     background-size: cover;
     background-position: center;
@@ -240,10 +258,10 @@ button:disabled {
     background-position: center;
     height: 10em;
     width: 10em;
-}
+} */
 
 .titleThree {
-    font-size:larger;
+    font-size:large;
     white-space: nowrap;
     text-overflow: ellipsis;
     background-color: antiquewhite;
