@@ -55,20 +55,20 @@ let intervalID;
 /****SECONDARY FUNCTION******
  ***************************/
 function getEvolution() {
-  let count = 0;
-  decadeContainer.classList.add("fade-in");
-  getDecade(urlArray[count], yearsArray[count]);
+  let count = 0; // on initialise un compteur à 0 pour changer d'url et d'années suivant l'évolution
+  decadeContainer.classList.add("fade-in"); // ajoute l'effet fade au départ
+  getDecade(urlArray[count], yearsArray[count]); // affiche la première décennie
 
-  intervalID = setInterval(() => {
-    count++;
-    if (count < urlArray.length) {
+  intervalID = setInterval(() => { // lance un interval de 4 secondes entre 2 décennies
+    count++; // incrémente le compteur afin de changer d'url et d'années 
+    if (count < urlArray.length) { // s'il y a encore une url à récupérer
       decadeContainer.innerHTML = "";
       decadeContainer.classList.add("fade-in");
-      getDecade(urlArray[count], yearsArray[count]);
-    } else {
-      decadeContainer.classList.remove("fade-in");
-      clearInterval(intervalID);
-      selectDecade.disabled = false;
+      getDecade(urlArray[count], yearsArray[count]); // affiche la décennie et son top 10 en cours
+    } else { // quand il n'y a plus d'url à récupérer, on stoppe tout
+      decadeContainer.classList.remove("fade-in"); // retrait de l'effet fade
+      clearInterval(intervalID); // on stoppe le temps
+      selectDecade.disabled = false; // on réactive le bouton de selection de décennie
     }
   }, 4000);
 }
@@ -121,7 +121,7 @@ function displayDetails(elem) {
   let genresName = document.createElement("div");
   let result = "";
   for (let value of genre) {
-    result += value.name + " ";
+    result += value.name + " "; // rajoute à la suite tous les genres
   }
   genresName.innerText = `Genre(s): ${result}`;
   detailsDiv.appendChild(genresName);
@@ -135,7 +135,7 @@ function displayDetails(elem) {
   voteAverage.innerText = `Score: ${elem.vote_average}`;
   detailsDiv.appendChild(voteAverage);
 
-  detailsContainer.appendChild(detailsDiv);
+  detailsContainer.appendChild(detailsDiv); // place tous les éléments de détails dans la boite de dialogue
 }
 
 function displayCloseButton() {
@@ -160,11 +160,11 @@ function createDiv(list, elem, number, position) {
   movieTitle.innerText = elem.title;
   titlePoster.appendChild(movieTitle);
   
-  poster.addEventListener("click", () => {
+  poster.addEventListener("click", () => { // lorsqu'on clique sur une affiche
     detailsContainer.innerHTML = "";
-    moviesDetails(elem.id);
-    detailsContainer.classList.add("modalFadeIn");
-    bodyClass.add("blurBackground");
+    moviesDetails(elem.id); // appelle la fonction async pour récupérer les détails d'un film selon son id 
+    detailsContainer.classList.add("modalFadeIn"); // permet une animation css sur l'ouverture de la boite de dialogue
+    bodyClass.add("blurBackground"); // permet de flouter le fond via css lors de l'ouverture de la boite de dialogue
   })
  return titlePoster;
 }
@@ -174,12 +174,12 @@ function createDiv(list, elem, number, position) {
  ****************************/
 async function moviesDetails(id_movie) {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id_movie}`, options);
-    const dataDetails = await response.json();
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id_movie}`, options); // on récupère les détails des films grâce à l'id de la précédente requête API
+    const dataDetails = await response.json(); 
 
-    detailsContainer.showModal();
-    displayDetails(dataDetails);
-    displayCloseButton();
+    detailsContainer.showModal(); // permet d'ouvrir une boite de dialogue créée dans le HTML
+    displayDetails(dataDetails); // affiche les détails du film sélectionné dans la boite de dialogue
+    displayCloseButton(); // affiche le bouton pour fermer la boite de dialogue
 
   } catch (error) {
     console.error("Failed to catch data details:", error);
@@ -188,31 +188,31 @@ async function moviesDetails(id_movie) {
 
 async function getDecade(url, year) {
   try {
-    const response = await fetch(url);
-    const dataDecade = await response.json();
+    const response = await fetch(url); // récupère les données de l'API suivant un url précisé
+    const dataDecade = await response.json(); // met la réponse en JSON
 
-    decadeDisplay.innerText = `Top of the ${year}`;
+    decadeDisplay.innerText = `Top of the ${year}`; // affiche la décennie en cours
 
-    let resultDecade = dataDecade.results;
-    let topThree = resultDecade.slice(0, 3);
-    let topLastSeven = resultDecade.slice(3, 10);
-    let count = 1;
+    let resultDecade = dataDecade.results; // on se place au niveau "results" dans la réponse de l'API
+    let topThree = resultDecade.slice(0, 3); // on stocke les 3 premiers films
+    let topLastSeven = resultDecade.slice(3, 10); // on stocke les 7 films suivants
+    let count = 1; // on initialise un compteur à 1 qui servira à différencier les classes des affiches (or, argent, bronze)
 
-    let listOfMovies = movieList();
-    let listTopThree = TheTopThree(listOfMovies);
-    let listLastSeven = TheLastSeven(listOfMovies);
+    let listOfMovies = movieList(); // on crée une liste de films
+    let listTopThree = TheTopThree(listOfMovies); // on crée une div qui englobe les 3 premiers films
+    let listLastSeven = TheLastSeven(listOfMovies); // on crée une div qui englobe les 7 suivants
 
     topThree.forEach((element) => {
-      createDiv(listTopThree, element, "Three", count);
-      count ++;
+      createDiv(listTopThree, element, "Three", count); // on crée le contenu du top 3 films
+      count ++; // on incrémente count afin de différencier les classes des affiches
     });
 
     topLastSeven.forEach((element) => {
-      createDiv(listLastSeven, element, "Seven", count);
+      createDiv(listLastSeven, element, "Seven", count); // on crée le contenu des 7 films suivants
     });
 
   } catch (error) {
-    console.error("Failed to catch data :", error);
+    console.error("Failed to catch data :", error); // message en cas de problèmes de requêtes API
   }
 }
 
@@ -223,10 +223,10 @@ buttonStopEvolution.disabled = true;
 
 selectDecade.addEventListener("change", () => {
   decadeContainer.innerHTML = "";
-  const decade = selectDecade.value;
-  decadeContainer.classList.remove("fade-in");
+  const decade = selectDecade.value; // il récupère la valeur du bouton select de HTML (la décennie)
+  decadeContainer.classList.remove("fade-in"); // stoppe l'effet fade de l'évolution
 
-  switch (decade) {
+  switch (decade) { // lance la fonction getDecade en fonction de la décennie choisie
     case "70":
       getDecade(urlSeventies, "70's");
       break;
@@ -260,15 +260,15 @@ buttonEvolution.addEventListener("click", () => {
 });
 
 buttonStopEvolution.addEventListener("click", () => {
-  decadeContainer.classList.remove("fade-in");
+  decadeContainer.classList.remove("fade-in");// on stoppe l'effet fade css
   selectDecade.disabled = false;
   buttonEvolution.disabled = false;
   buttonStopEvolution.disabled = true;
-  clearInterval(intervalID);
+  clearInterval(intervalID); // on stoppe l'évolution
 })
 
 buttonCloseModal.addEventListener("click", () => {
-  detailsContainer.close();
-  decadeContainer.classList.remove("modalFadeIn");
-  bodyClass.remove("blurBackground");
+  detailsContainer.close(); // permet de fermer la boite de dialogue
+  decadeContainer.classList.remove("modalFadeIn"); // enlève l'effet fade
+  bodyClass.remove("blurBackground"); // enlève le floutage
 })
