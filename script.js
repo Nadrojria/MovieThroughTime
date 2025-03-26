@@ -50,7 +50,6 @@ const yearsArray = [
 ]
 
 let intervalID;
-let arrayDataDetails = [];
 
 
 /****SECONDARY FUNCTION******
@@ -169,12 +168,6 @@ function createDiv(list, elem, number, position) {
   })
  return titlePoster;
 }
-
-// function podium(position){
-//   let podiumPosition = document.createElement("div");
-//   podiumPosition.classList.add(`podiumPosition${position}`);
-//   return podiumPosition;
-// }
 
 
 /****PRINCIPAL FUNCTIONS******
