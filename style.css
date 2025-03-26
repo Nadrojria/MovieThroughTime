@@ -161,6 +161,8 @@ button:disabled {
 @keyframes fadeIn {
     0% { opacity: 0; };
   100% { opacity: 1; };
+}
+
 .decadeContainers {
     min-height: 1200px;
 }
