@@ -291,7 +291,7 @@ h1 {
     width: 8px;
     height: 8px;
     background: #5e5e5e;
-    box-shadow: 13px 0px 0px #5e5e5e, 26px 0px 0px #5e5e5e, 39px 0px 0px #5e5e5e, 52px 0px 0px #5e5e5e, 65px 0px 0px #5e5e5e, 78px 0px 0px #5e5e5e, 90px 0px 0px #5e5e5e, 102px 0px 0px #5e5e5e, 114px 0px 0px #5e5e5e, 126px 0px 0px #5e5e5e, 138px 0px 0px #5e5e5e, 151px 0px 0px #5e5e5e, 163px 0px 0px #5e5e5e;
+    box-shadow: 13px 0px 0px #5e5e5e, 26px 0px 0px #5e5e5e, 39px 0px 0px #5e5e5e, 52px 0px 0px #5e5e5e, 65px 0px 0px #5e5e5e, 78px 0px 0px #5e5e5e, 90px 0px 0px #5e5e5e, 102px 0px 0px #5e5e5e, 114px 0px 0px #5e5e5e, 126px 0px 0px #5e5e5e, 138px 0px 0px #5e5e5e, 151px 0px 0px #5e5e5e, 163px 0px 0px #5E5E5D, 176px 0px 0px #5e5e5e, 189px 0px 0px #5e5e5e, 200px 0px 0px #5e5e5e;
 }
   
 .titlePosterSeven::after {
@@ -302,7 +302,7 @@ h1 {
     width: 8px;
     height: 8px;
     background: #5e5e5e;
-    box-shadow: 13px 0px 0px #5e5e5e, 26px 0px 0px #5e5e5e, 39px 0px 0px #5e5e5e, 52px 0px 0px #5e5e5e, 65px 0px 0px #5e5e5e, 78px 0px 0px #5e5e5e, 90px 0px 0px #5e5e5e, 102px 0px 0px #5e5e5e, 114px 0px 0px #5e5e5e, 126px 0px 0px #5e5e5e, 138px 0px 0px #5e5e5e, 151px 0px 0px #5e5e5e, 163px 0px 0px #5e5e5e;
+    box-shadow: 13px 0px 0px #5e5e5e, 26px 0px 0px #5e5e5e, 39px 0px 0px #5e5e5e, 52px 0px 0px #5e5e5e, 65px 0px 0px #5e5e5e, 78px 0px 0px #5e5e5e, 90px 0px 0px #5e5e5e, 102px 0px 0px #5e5e5e, 114px 0px 0px #5e5e5e, 126px 0px 0px #5e5e5e, 138px 0px 0px #5e5e5e, 151px 0px 0px #5e5e5e, 163px 0px 0px #5E5E5D, 176px 0px 0px #5e5e5e, 189px 0px 0px #5e5e5e, 200px 0px 0px #5E5E5B;
 }
 
 /*****BLUR AND FADE****
@@ -316,7 +316,7 @@ h1 {
 }
 
 .fade-in {
-    animation: fadeIn infinite alternate ease 2s;  
+    animation: fadeIn infinite alternate ease 4s;  
 }
 
 @keyframes fadeIn {

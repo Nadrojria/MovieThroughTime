@@ -59,7 +59,7 @@ function getEvolution() {
   decadeContainer.classList.add("fade-in"); // ajoute l'effet fade au départ
   getDecade(urlArray[count], yearsArray[count]); // affiche la première décennie
 
-  intervalID = setInterval(() => { // lance un interval de 4 secondes entre 2 décennies
+  intervalID = setInterval(() => { // lance un interval de 8 secondes entre 2 décennies
     count++; // incrémente le compteur afin de changer d'url et d'années 
     if (count < urlArray.length) { // s'il y a encore une url à récupérer
       decadeContainer.innerHTML = "";
@@ -70,7 +70,7 @@ function getEvolution() {
       clearInterval(intervalID); // on stoppe le temps
       selectDecade.disabled = false; // on réactive le bouton de selection de décennie
     }
-  }, 4000);
+  }, 8000);
 }
 
 function movieList() {
